@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "static:generate": "next build && next export",
+    "static:run": "npx serve -s out/.",
     "start": "next start",
     "lint": "next lint"
   },
