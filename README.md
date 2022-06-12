@@ -28,7 +28,7 @@
     <a href="https://github.com/jesusvallez/nextjs-ts-eslint-mui"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/jesusvallez/nextjs-ts-eslint-mui">View Demo</a>
+    <a href="https://nextjs-ts-eslint-mui.vercel.app/">View Demo</a>
     -
     <a href="https://github.com/jesusvallez/nextjs-ts-eslint-mui/issues">Report Bug</a>
     ·
@@ -53,8 +53,8 @@ To get a local copy up and running follow these simple example steps.
    npm i
    ```
 3. To start web
-   ```js
-   yarn run dev
+   ```sh
+   npm run dev
    ```
    <p align="right">(<a href="#top">back to top</a>)</p>
 
