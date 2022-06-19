@@ -8,6 +8,7 @@ import spacing from './config/spacing'
 import MuiAppBar from './overrides/MuiAppBar'
 import MuiContainer from './overrides/MuiContainer'
 import MuiCssBaseline from './overrides/MuiCssBaseline'
+import MuiSvgIcon from './overrides/MuiSvgIcon'
 import MuiToolbar from './overrides/MuiToolbar'
 
 const themeOptions = (mode: PaletteMode): ThemeOptions => ({
@@ -16,7 +17,7 @@ const themeOptions = (mode: PaletteMode): ThemeOptions => ({
     mode,
     primary: {
       main: '#00adb5',
-      contrastText: '#1a202c',
+      contrastText: '#121212',
     },
     background: {
       default: mode === 'dark' ? '#121212' : '#f0e7db',
@@ -31,6 +32,7 @@ const themeOptions = (mode: PaletteMode): ThemeOptions => ({
     MuiAppBar: MuiAppBar(mode),
     MuiContainer,
     MuiCssBaseline,
+    MuiSvgIcon,
     MuiToolbar,
   },
 })

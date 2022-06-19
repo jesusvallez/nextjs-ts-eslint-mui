@@ -36,19 +36,11 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
           options={{ showSpinner: false }}
         />
         <ThemeLayout emotionCache={emotionCache}>
-          <ElevateAppBar />
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '100vh',
-            }}
-          >
-            <Box component="main" sx={{ flex: 1 }}>
-              <Component {...pageProps} />
-            </Box>
-            <Copyright />
+          <ElevateAppBar text="Lorem ipsum dolor." />
+          <Box component="main">
+            <Component {...pageProps} />
           </Box>
+          <Copyright />
         </ThemeLayout>
       </SeoContainer>
     </>

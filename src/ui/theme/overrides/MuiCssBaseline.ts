@@ -7,6 +7,12 @@ const MuiCssBaseline: Components['MuiCssBaseline'] = {
       transition-duration: 300ms;
     }
 
+    #__next {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     html {
       -webkit-font-smoothing: auto;
     }
