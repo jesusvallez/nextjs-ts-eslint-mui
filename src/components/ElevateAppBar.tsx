@@ -12,8 +12,6 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 
-const ITEM_HEIGHT = 48
-
 interface Props {
   text: string
   color?: ComponentProps<typeof AppBar>['color']
