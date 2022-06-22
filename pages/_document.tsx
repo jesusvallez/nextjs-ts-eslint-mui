@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript, DocumentInitialProps } from 'ne
 
 import createEmotionServer from '@emotion/server/create-instance'
 
-import createEmotionCache from '@/src/utils/createEmotionCache'
+import { createEmotionCache } from '@/utils'
 
 type MyDocumentInitialProps = DocumentInitialProps & {
   emotionStyleTags?:

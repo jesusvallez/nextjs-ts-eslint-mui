@@ -1,14 +1,33 @@
-import { Container } from '@mui/material'
+import { Typography } from '@mui/material'
 
-import Banner from '@/src/components/Banner'
+import { Banner } from '@/components'
+import { ContainerLayout } from '@/ui'
+import { SxStyles } from '@/ui/theme'
+
+const classes: SxStyles = {
+  title: {
+    ':before': {
+      display: 'block',
+      content: '" "',
+      marginTop: '-100px',
+      height: '100px',
+      visibility: 'hidden',
+      pointerEvents: 'none',
+    },
+  },
+}
 
 const index = () => {
+  const { title } = classes
+
   return (
     <>
       <Banner />
-      <Container>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, veniam.</h1>
-        <p>
+      <ContainerLayout>
+        <Typography id="id1" component="h1" variant="h4" sx={title}>
+          Lorem, ipsum dolor.
+        </Typography>
+        <Typography gutterBottom>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam nemo ad cum ipsa illo,
           suscipit iure sed? Ea quidem officia in natus iure delectus, ipsam, saepe aperiam
           voluptate necessitatibus fugiat incidunt tenetur assumenda pariatur dolores corporis
@@ -31,30 +50,38 @@ const index = () => {
           magnam quasi soluta laborum modi libero numquam eveniet animi consequatur, culpa debitis
           quibusdam maxime itaque alias quidem corrupti laboriosam, voluptatem incidunt! Fugiat
           voluptas, repudiandae ab modi quas consequatur, minus perspiciatis maxime provident neque
-          omnis repellendus consequuntur at quis asperiores esse ex deleniti. Est facere sunt vero
-          ea expedita deserunt itaque qui reiciendis voluptatem laborum magnam amet, voluptate
-          quidem animi officia excepturi nihil alias aperiam! Tempore delectus, voluptatibus in
-          fugit qui ratione sunt velit modi vitae similique suscipit pariatur. Doloremque ad
-          inventore consequatur cumque, perferendis debitis odio nesciunt accusantium porro unde,
-          libero ipsam et adipisci beatae, voluptatibus aliquid est. Alias quo ipsa officia eveniet
-          a nesciunt dolorem, asperiores commodi perferendis pariatur labore! Fuga labore excepturi
-          quo consectetur deleniti provident eaque, cupiditate velit nemo, quae omnis aperiam unde.
-          Sed illum hic in inventore nisi tempore itaque expedita laboriosam nobis porro illo vel
-          corrupti, quia ducimus totam! Saepe deserunt suscipit eaque asperiores dolorem incidunt
-          sequi natus amet voluptatem quam unde vitae necessitatibus quod fugiat repudiandae alias
-          rerum reiciendis, neque possimus? Laborum maxime quae odit adipisci error? Nostrum
-          nesciunt perferendis libero laboriosam aspernatur, sequi quaerat explicabo cupiditate
-          culpa, voluptas laborum corporis sunt eos quos atque doloremque nemo exercitationem
-          delectus, rerum similique assumenda voluptatem ex quia? Ipsa at voluptates, aperiam
-          laboriosam deserunt quaerat maxime dolore, sed dolorem veniam, fuga provident dignissimos
-          alias necessitatibus exercitationem incidunt error laborum inventore ad voluptatem
-          repellat? Tenetur sint non magnam numquam architecto? Quod magnam commodi officia laborum
-          ea. In perspiciatis at doloremque consequuntur fugit perferendis beatae quibusdam cum illo
-          vel ipsa eius ad sint, sunt nobis aliquid nemo quo, esse odio? Libero, cum adipisci, ad
-          quis doloribus eum quo debitis molestiae sunt incidunt unde repudiandae obcaecati
-          recusandae autem!
-        </p>
-        <p>
+          omnis repellendus consequuntur at quis asperiores esse ex deleniti.
+        </Typography>
+        <Typography id="id2" component="h1" variant="h4" sx={title}>
+          Lorem, ipsum dolor.
+        </Typography>
+        <Typography gutterBottom>
+          Est facere sunt vero ea expedita deserunt itaque qui reiciendis voluptatem laborum magnam
+          amet, voluptate quidem animi officia excepturi nihil alias aperiam! Tempore delectus,
+          voluptatibus in fugit qui ratione sunt velit modi vitae similique suscipit pariatur.
+          Doloremque ad inventore consequatur cumque, perferendis debitis odio nesciunt accusantium
+          porro unde, libero ipsam et adipisci beatae, voluptatibus aliquid est. Alias quo ipsa
+          officia eveniet a nesciunt dolorem, asperiores commodi perferendis pariatur labore! Fuga
+          labore excepturi quo consectetur deleniti provident eaque, cupiditate velit nemo, quae
+          omnis aperiam unde. Sed illum hic in inventore nisi tempore itaque expedita laboriosam
+          nobis porro illo vel corrupti, quia ducimus totam! Saepe deserunt suscipit eaque
+          asperiores dolorem incidunt sequi natus amet voluptatem quam unde vitae necessitatibus
+          quod fugiat repudiandae alias rerum reiciendis, neque possimus? Laborum maxime quae odit
+          adipisci error? Nostrum nesciunt perferendis libero laboriosam aspernatur, sequi quaerat
+          explicabo cupiditate culpa, voluptas laborum corporis sunt eos quos atque doloremque nemo
+          exercitationem delectus, rerum similique assumenda voluptatem ex quia? Ipsa at voluptates,
+          aperiam laboriosam deserunt quaerat maxime dolore, sed dolorem veniam, fuga provident
+          dignissimos alias necessitatibus exercitationem incidunt error laborum inventore ad
+          voluptatem repellat? Tenetur sint non magnam numquam architecto? Quod magnam commodi
+          officia laborum ea. In perspiciatis at doloremque consequuntur fugit perferendis beatae
+          quibusdam cum illo vel ipsa eius ad sint, sunt nobis aliquid nemo quo, esse odio? Libero,
+          cum adipisci, ad quis doloribus eum quo debitis molestiae sunt incidunt unde repudiandae
+          obcaecati recusandae autem!
+        </Typography>
+        <Typography id="id3" component="h1" variant="h4" sx={title}>
+          Lorem, ipsum dolor.
+        </Typography>
+        <Typography gutterBottom>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure nam commodi aliquam impedit
           error ex quae eveniet officia odio. Possimus unde facere esse harum laboriosam eos iusto
           quod ipsum molestias vero. Possimus doloremque quam tempore officiis sunt quod debitis
@@ -81,14 +108,17 @@ const index = () => {
           a sed ducimus. Eaque ad quidem quis odit laudantium quia vero quod ea autem, soluta omnis
           error explicabo commodi. At ipsum officia aperiam iusto culpa minima ea distinctio, soluta
           ratione!
-        </p>
-        <p>
+        </Typography>
+        <Typography id="id4" component="h1" variant="h4" sx={title}>
+          Lorem, ipsum dolor.
+        </Typography>
+        <Typography gutterBottom>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ipsum architecto
-          perferendis aperiam totam esse obcaecati veniam aliquid, quidem ipsam earum blanditiis
-          laudantium aspernatur officia illum. Excepturi molestiae facere fugit corporis et eveniet
-          placeat doloremque quos sunt deleniti necessitatibus, eius velit ab obcaecati quidem
-          itaque aperiam doloribus! Illo sed dolorem, cumque earum dolor sint quod natus magnam
-          ducimus maiores cum excepturi, numquam, reprehenderit ad est facere incidunt eius?
+          perferendis aperiam gutterBottomtotam esse obcaecati veniam aliquid, quidem ipsam earum
+          blanditiis laudantium aspernatur officia illum. Excepturi molestiae facere fugit corporis
+          et eveniet placeat doloremque quos sunt deleniti necessitatibus, eius velit ab obcaecati
+          quidem itaque aperiam doloribus! Illo sed dolorem, cumque earum dolor sint quod natus
+          magnam ducimus maiores cum excepturi, numquam, reprehenderit ad est facere incidunt eius?
           Quibusdam, laborum repellendus inventore quisquam consectetur ad porro, dignissimos, fugit
           iusto exercitationem doloribus dolore fuga. Delectus, laudantium? Corporis ullam aut
           eligendi non unde soluta quas mollitia, dolorem ipsam odit nisi architecto a impedit iure
@@ -107,6 +137,11 @@ const index = () => {
           excepturi aliquam ratione maiores ea, sed quia accusantium facilis molestias suscipit
           cupiditate ad repellendus asperiores inventore, voluptas saepe qui necessitatibus harum,
           officia numquam optio pariatur. Fugiat molestiae molestias aliquam officiis doloribus sed
+        </Typography>
+        <Typography id="id5" component="h1" variant="h4" sx={title}>
+          Lorem, ipsum dolor.
+        </Typography>
+        <Typography gutterBottom>
           repudiandae voluptates nostrum maiores optio eos dignissimos esse, explicabo commodi?
           Repellat rem quasi distinctio! Aspernatur, cupiditate. Pariatur, nobis illum at sequi
           facere voluptas perspiciatis placeat vel, totam nesciunt voluptatum, aut repellat! Ipsam
@@ -127,8 +162,8 @@ const index = () => {
           aliquam odio ipsum non sit qui nostrum, inventore nihil minima cumque fugiat voluptatem
           temporibus sunt iure? Fuga voluptatum magnam perspiciatis atque quia illum animi delectus
           quidem hic recusandae exercitationem, consequatur vitae iusto eum. Sit, nesciunt.
-        </p>
-      </Container>
+        </Typography>
+      </ContainerLayout>
     </>
   )
 }
