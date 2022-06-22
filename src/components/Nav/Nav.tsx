@@ -32,7 +32,12 @@ const Nav = (): ReactElement => {
 
   return (
     <>
-      <ElevateAppBar text="JESÚSV." moreDetails={toggle} elements={elements} matches={matches} />
+      <ElevateAppBar
+        text="Lorem ipsum dolor."
+        moreDetails={toggle}
+        elements={elements}
+        matches={matches}
+      />
       <CustomDrawer isVisible={isVisible && !matches} close={setFalse} elements={elements} />
     </>
   )

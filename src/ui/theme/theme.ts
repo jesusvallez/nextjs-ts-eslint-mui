@@ -5,6 +5,7 @@ import { createTheme, ThemeOptions } from '@mui/material/styles'
 import breakpoints from './config/breakpoints'
 // import palette from './config/palette'
 import spacing from './config/spacing'
+import { snippets } from './helpers'
 import MuiAppBar from './overrides/MuiAppBar'
 import MuiContainer from './overrides/MuiContainer'
 import MuiCssBaseline from './overrides/MuiCssBaseline'
@@ -28,6 +29,7 @@ const themeOptions = (mode: PaletteMode): ThemeOptions => ({
   },
   breakpoints,
   spacing,
+  snippets,
   components: {
     MuiAppBar: MuiAppBar(mode),
     MuiContainer,

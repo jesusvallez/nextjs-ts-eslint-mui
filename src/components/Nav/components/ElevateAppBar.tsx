@@ -11,7 +11,17 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 
+import { SxStyles } from '@/ui/theme'
+
 import { ElementNav } from '../models'
+
+export const classes: SxStyles = {
+  links: (theme) => ({
+    ...theme.snippets?.links,
+    whiteSpace: 'wrap',
+    verticalAlign: 'unset',
+  }),
+}
 
 interface Props {
   text: string
@@ -34,6 +44,7 @@ const ElevateAppBar = ({
   threshold = 20,
   moreDetails,
 }: Props) => {
+  const { links } = classes
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold,
@@ -68,6 +79,7 @@ const ElevateAppBar = ({
                     letterSpacing={'-1px'}
                     fontWeight="bold"
                     href={e.link ?? ''}
+                    sx={links}
                   >
                     {e.text}
                   </Typography>
@@ -75,7 +87,7 @@ const ElevateAppBar = ({
               ))}
             </Box>
           ) : (
-            <IconButton aria-label="more" sx={{ color: 'black' }} onClick={moreDetails}>
+            <IconButton aria-label="more" sx={{ color: 'white' }} onClick={moreDetails}>
               <MenuIcon />
             </IconButton>
           )}

@@ -1,8 +1,13 @@
-import { SxProps, Theme } from '@mui/material'
+import { CSSProperties } from 'react'
 
-export const snippets: { [className: string]: SxProps<Theme> } = {
-  link: {
+export const snippets = {
+  links: {
+    color: 'white',
     textDecoration: 'underline',
     whiteSpace: 'nowrap',
-  },
+
+    '&:hover': {
+      color: 'white',
+    },
+  } as CSSProperties,
 }

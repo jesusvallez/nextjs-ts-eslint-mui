@@ -6,7 +6,8 @@ import NextNProgress from 'nextjs-progressbar'
 
 import { Box, useTheme } from '@mui/material'
 
-import { Copyright, ElevateAppBar } from '@/components'
+import { Copyright } from '@/components'
+import { Nav } from '@/components/Nav'
 import { SeoContainer } from '@/seo'
 import { ThemeLayout } from '@/ui'
 import { createEmotionCache } from '@/utils'
@@ -36,7 +37,7 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
           options={{ showSpinner: false }}
         />
         <ThemeLayout emotionCache={emotionCache}>
-          <ElevateAppBar text="Lorem ipsum dolor." />
+          <Nav />
           <Box component="main">
             <Component {...pageProps} />
           </Box>
