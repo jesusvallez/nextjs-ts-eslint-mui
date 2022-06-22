@@ -1,22 +1,16 @@
-import { Components } from '@mui/material/styles/components'
-
-import breakpoints from '../config/breakpoints'
-import spacing from '../config/spacing'
+import { experimental_sx as sx, Components } from '@mui/material'
 
 const MuiContainer: Components['MuiContainer'] = {
   defaultProps: {
     maxWidth: 'lg',
   },
   styleOverrides: {
-    root: {
-      paddingLeft: spacing(2),
-      paddingRight: spacing(2),
-
-      [breakpoints.up('sm')]: {
-        paddingLeft: spacing(4),
-        paddingRight: spacing(4),
+    root: sx({
+      px: {
+        xs: 4,
+        sm: 4,
       },
-    },
+    }),
   },
 }
 

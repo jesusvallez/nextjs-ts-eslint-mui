@@ -15,6 +15,7 @@ const MuiCssBaseline: Components['MuiCssBaseline'] = {
 
     html {
       -webkit-font-smoothing: auto;
+      scroll-behavior: smooth
     }
 
     figure {

@@ -64,7 +64,3 @@ declare module '@mui/styles/defaultTheme' {
 
   interface DefaultTheme extends Theme {}
 }
-
-type ExtendedIcon = React.FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string; primary?: string; secondary?: string }
->
