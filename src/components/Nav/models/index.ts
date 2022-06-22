@@ -1,4 +1,4 @@
-import { SVGReactComponent } from '../ui/theme'
+import { SVGReactComponent } from '@/ui/theme'
 
 export interface ElementNav {
   text: string
