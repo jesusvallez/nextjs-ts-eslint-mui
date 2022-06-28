@@ -6,6 +6,7 @@ import {
   Drawer,
   List,
   ListItem,
+  Typography,
 } from '@mui/material'
 
 import { ElementNav } from '../models'
@@ -24,13 +25,28 @@ function CustomDrawer({ isVisible, close, archor = 'right', elements = [] }: Pro
         <List>
           {Object.values(elements).map(({ text, icon: Icon, link }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton href={link ?? ''}>
+              <ListItemButton>
                 {Icon && (
                   <ListItemIcon>
                     <Icon />
                   </ListItemIcon>
                 )}
-                <ListItemText primary={text} />
+                <ListItemText>
+                  <Typography
+                    key={text}
+                    component="a"
+                    letterSpacing={'-1px'}
+                    fontWeight="bold"
+                    onClick={() => {
+                      if (link) {
+                        const element = globalThis.document.getElementById(link)
+                        element && element.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }}
+                  >
+                    {text}
+                  </Typography>
+                </ListItemText>
               </ListItemButton>
             </ListItem>
           ))}

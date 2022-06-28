@@ -2,9 +2,13 @@ import { ReactElement } from 'react'
 
 import { Box, Container, SvgIcon, Typography } from '@mui/material'
 
+import useGlobalContext from '@/context/useGlobalContext'
+
 import { ReactComponent as ShapeSVG } from '../assets/shape.svg'
 
 const Banner = (): ReactElement => {
+  const { data, setData } = useGlobalContext()
+
   return (
     <>
       <Box
@@ -23,6 +27,9 @@ const Banner = (): ReactElement => {
             letterSpacing={-2.5}
             unselectable="on"
             color="primary.contrastText"
+            onClick={() => {
+              setData({ footer: 'Title Clicked', enable: false })
+            }}
             gutterBottom
           >
             Lorem ipsum dolor sit.
@@ -34,26 +41,31 @@ const Banner = (): ReactElement => {
             unselectable="on"
             lineHeight={1.2}
             color="primary.contrastText"
+            onClick={() => {
+              setData({ footer: 'Subtitle Clicked', enable: true })
+            }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fugiat vel fuga, harum
             voluptatibus nostrum delectus, inventore necessitatibus maxime perferendis,
             exercitationem quos qui dignissimos. Nisi odit sequi corrupti perferendis eum?
           </Typography>
         </Container>
-        <SvgIcon
-          component={ShapeSVG}
-          sx={{
-            fill: ({ palette }) => palette.background.default,
-            width: '100%',
-            height: {
-              xs: '40px',
-              sm: '60px',
-            },
-            position: 'absolute',
-            bottom: '0',
-            transform: 'rotate(180deg) scaleX(-1);',
-          }}
-        />
+        {data?.enable && (
+          <SvgIcon
+            component={ShapeSVG}
+            sx={{
+              fill: ({ palette }) => palette.background.default,
+              width: '100%',
+              height: {
+                xs: '40px',
+                sm: '60px',
+              },
+              position: 'absolute',
+              bottom: '0',
+              transform: 'rotate(180deg) scaleX(-1);',
+            }}
+          />
+        )}
       </Box>
     </>
   )

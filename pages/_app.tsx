@@ -8,6 +8,7 @@ import { Box, useTheme } from '@mui/material'
 
 import { Copyright } from '@/components'
 import { Nav } from '@/components/Nav'
+import { GlobalContextContainer } from '@/context/useGlobalContext'
 import { SeoContainer } from '@/seo'
 import { ThemeLayout } from '@/ui'
 import { createEmotionCache } from '@/utils'
@@ -37,11 +38,13 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
           options={{ showSpinner: false }}
         />
         <ThemeLayout emotionCache={emotionCache}>
-          <Nav />
-          <Box component="main">
-            <Component {...pageProps} />
-          </Box>
-          <Copyright />
+          <GlobalContextContainer>
+            <Nav />
+            <Box component="main">
+              <Component {...pageProps} />
+            </Box>
+            <Copyright />
+          </GlobalContextContainer>
         </ThemeLayout>
       </SeoContainer>
     </>

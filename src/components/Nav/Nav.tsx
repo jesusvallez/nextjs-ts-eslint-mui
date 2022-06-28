@@ -14,11 +14,11 @@ const Nav = (): ReactElement => {
 
   const [elements] = useState<ElementNav[]>(() => {
     const elements: ElementNav[] = [
-      { text: 'HOME', link: '#id1' },
-      { text: 'ABOUT ME', link: '#id2' },
-      { text: 'CURRENT WORK', link: '#id3' },
-      { text: 'EXPERIENCE', link: '#id4' },
-      { text: 'CONTACT', link: '#id5' },
+      { text: 'HOME', link: 'id1' },
+      { text: 'ABOUT ME', link: 'id2' },
+      { text: 'CURRENT WORK', link: 'id3' },
+      { text: 'EXPERIENCE', link: 'id4' },
+      { text: 'CONTACT', link: 'id5' },
     ]
 
     return elements

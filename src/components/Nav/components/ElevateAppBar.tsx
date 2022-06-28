@@ -16,10 +16,11 @@ import { SxStyles } from '@/ui/theme'
 import { ElementNav } from '../models'
 
 export const classes: SxStyles = {
-  links: (theme) => ({
-    ...theme.snippets?.links,
+  links: ({ snippets }) => ({
+    ...snippets?.links,
     whiteSpace: 'wrap',
     verticalAlign: 'unset',
+    cursor: 'pointer',
   }),
 }
 
@@ -72,16 +73,21 @@ const ElevateAppBar = ({
 
           {elements.length > 0 && matches ? (
             <Box display="flex" gap={6} component="ul" sx={{ listStyleType: 'none' }}>
-              {elements.map((e) => (
-                <Box key={e.text} component="li">
+              {elements.map(({ text, link }) => (
+                <Box key={text} component="li">
                   <Typography
                     component="a"
                     letterSpacing={'-1px'}
                     fontWeight="bold"
-                    href={e.link ?? ''}
                     sx={links}
+                    onClick={() => {
+                      if (link) {
+                        const element = globalThis.document.getElementById(link)
+                        element && element.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }}
                   >
-                    {e.text}
+                    {text}
                   </Typography>
                 </Box>
               ))}
