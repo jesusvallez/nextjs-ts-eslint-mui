@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react'
 
-import { useMediaQuery, useTheme } from '@mui/material'
+import { Breakpoint, useMediaQuery, useTheme } from '@mui/material'
 
 import useBoolean from '@/hooks/useBoolean'
 
@@ -9,7 +9,8 @@ import { ElementNav } from './models'
 
 const Nav = (): ReactElement => {
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('md'))
+  const breakpoint: Breakpoint = 'md'
+  const matches = useMediaQuery(theme.breakpoints.up(breakpoint))
   const { value: isVisible, setFalse, toggle } = useBoolean(false)
 
   const [elements] = useState<ElementNav[]>(() => {
@@ -25,10 +26,10 @@ const Nav = (): ReactElement => {
   })
 
   useEffect(() => {
-    if (matches) {
+    if (matches && elements.length > 0) {
       setFalse()
     }
-  }, [matches, setFalse])
+  }, [matches, elements, setFalse])
 
   return (
     <>
@@ -36,7 +37,7 @@ const Nav = (): ReactElement => {
         text="Lorem ipsum dolor."
         moreDetails={toggle}
         elements={elements}
-        matches={matches}
+        breakpoint={breakpoint}
       />
       <CustomDrawer isVisible={isVisible && !matches} close={setFalse} elements={elements} />
     </>

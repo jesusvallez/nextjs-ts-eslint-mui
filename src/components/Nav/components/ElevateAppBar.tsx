@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
   Box,
+  Breakpoint,
   Container,
   IconButton,
   Toolbar,
@@ -15,19 +16,38 @@ import { SxStyles } from '@/ui/theme'
 
 import { ElementNav } from '../models'
 
-export const classes: SxStyles = {
+interface ClassProp {
+  breakpoint: Breakpoint
+}
+
+export const classes = ({ breakpoint }: ClassProp): SxStyles => ({
   links: (theme) => ({
     ...theme.snippets?.links,
     whiteSpace: 'wrap',
     verticalAlign: 'unset',
   }),
-}
+  menuItems: {
+    display: {
+      xs: 'none',
+      [breakpoint]: 'flex',
+    },
+    gap: 6,
+    listStyleType: 'none',
+  },
+  menuButton: {
+    display: {
+      xs: 'block',
+      [breakpoint]: 'none',
+    },
+    color: 'white',
+  },
+})
 
 interface Props {
   text: string
   elements: ElementNav[]
   color?: ComponentProps<typeof AppBar>['color']
-  matches?: boolean
+  breakpoint?: Breakpoint
   minHeight?: string
   position?: ComponentProps<typeof AppBar>['position']
   threshold?: number
@@ -36,7 +56,7 @@ interface Props {
 
 const ElevateAppBar = ({
   text,
-  matches = false,
+  breakpoint = 'md',
   elements = [],
   color = 'primary',
   minHeight = '90px',
@@ -44,7 +64,7 @@ const ElevateAppBar = ({
   threshold = 20,
   moreDetails,
 }: Props) => {
-  const { links } = classes
+  const { links, menuItems, menuButton } = classes({ breakpoint })
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold,
@@ -70,26 +90,27 @@ const ElevateAppBar = ({
             {text.toUpperCase()}
           </Typography>
 
-          {elements.length > 0 && matches ? (
-            <Box display="flex" gap={6} component="ul" sx={{ listStyleType: 'none' }}>
-              {elements.map((e) => (
-                <Box key={e.text} component="li">
-                  <Typography
-                    component="a"
-                    letterSpacing={'-1px'}
-                    fontWeight="bold"
-                    href={e.link ?? ''}
-                    sx={links}
-                  >
-                    {e.text}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          ) : (
-            <IconButton aria-label="more" sx={{ color: 'white' }} onClick={moreDetails}>
-              <MenuIcon />
-            </IconButton>
+          {elements.length > 0 && (
+            <>
+              <Box component="ul" sx={menuItems}>
+                {elements.map((e) => (
+                  <Box key={e.text} component="li">
+                    <Typography
+                      component="a"
+                      letterSpacing={'-1px'}
+                      fontWeight="bold"
+                      href={e.link ?? ''}
+                      sx={links}
+                    >
+                      {e.text}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+              <IconButton aria-label="more" sx={menuButton} onClick={moreDetails}>
+                <MenuIcon />
+              </IconButton>
+            </>
           )}
         </Toolbar>
       </Container>
