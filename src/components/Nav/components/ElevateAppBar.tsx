@@ -12,19 +12,28 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 
+import { ElementNav } from '@/context/useGlobalContext/useGlobalContext'
 import { SxStyles } from '@/ui/theme'
-
-import { ElementNav } from '../models'
 
 interface ClassProp {
   breakpoint: Breakpoint
 }
 
 export const classes = ({ breakpoint }: ClassProp): SxStyles => ({
-  links: (theme) => ({
-    ...theme.snippets?.links,
+  title: {
+    cursor: 'pointer',
+    fontWeight: 700,
+    fontFamily: "'Roboto Condensed', sans-serif",
+    letterSpacing: -2,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  links: ({ snippets }) => ({
+    ...snippets?.links,
     whiteSpace: 'wrap',
     verticalAlign: 'unset',
+    cursor: 'pointer',
   }),
   menuItems: {
     display: {
@@ -45,7 +54,7 @@ export const classes = ({ breakpoint }: ClassProp): SxStyles => ({
 
 interface Props {
   text: string
-  elements: ElementNav[]
+  elements?: ElementNav[]
   color?: ComponentProps<typeof AppBar>['color']
   breakpoint?: Breakpoint
   minHeight?: string
@@ -64,7 +73,7 @@ const ElevateAppBar = ({
   threshold = 20,
   moreDetails,
 }: Props) => {
-  const { links, menuItems, menuButton } = classes({ breakpoint })
+  const { title, links, menuItems, menuButton } = classes({ breakpoint })
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold,
@@ -81,11 +90,11 @@ const ElevateAppBar = ({
       <Container>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography
-            noWrap
             variant="h4"
-            fontWeight={700}
-            fontFamily="'Roboto Condensed', sans-serif"
-            letterSpacing={-2}
+            sx={title}
+            onClick={() => {
+              globalThis.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
             {text.toUpperCase()}
           </Typography>
@@ -99,8 +108,12 @@ const ElevateAppBar = ({
                       component="a"
                       letterSpacing={'-1px'}
                       fontWeight="bold"
-                      href={e.link ?? ''}
                       sx={links}
+                      onClick={() => {
+                        if (e.link && e.link.current) {
+                          globalThis.scrollTo({ top: e.link.current.offsetTop, behavior: 'smooth' })
+                        }
+                      }}
                     >
                       {e.text}
                     </Typography>
