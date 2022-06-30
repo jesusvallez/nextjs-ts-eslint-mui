@@ -14,7 +14,7 @@ export type ElementNav = {
 }
 
 export type GlobalData = {
-  links?: ElementNav[]
+  links: ElementNav[]
 }
 
 export type GlobalContent = {
@@ -25,7 +25,9 @@ export type GlobalContent = {
 
 export const MyGlobalContext = createContext<GlobalContent>({
   dataStoraged: {},
-  globalData: {},
+  globalData: {
+    links: [],
+  },
   setDataToStorage: () => {},
 })
 

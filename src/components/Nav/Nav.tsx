@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from 'react'
 
-import { useMediaQuery, useTheme } from '@mui/material'
+import { Breakpoint, useMediaQuery, useTheme } from '@mui/material'
 
 import useGlobalContext from '@/context/useGlobalContext'
 import useBoolean from '@/hooks/useBoolean'
@@ -9,15 +9,16 @@ import { CustomDrawer, ElevateAppBar } from './components'
 
 const Nav = (): ReactElement => {
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('md'))
-  const { globalData } = useGlobalContext()
+  const breakpoint: Breakpoint = 'md'
+  const matches = useMediaQuery(theme.breakpoints.up(breakpoint))
   const { value: isVisible, setFalse, toggle } = useBoolean(false)
+  const { globalData } = useGlobalContext()
 
   useEffect(() => {
-    if (matches) {
+    if (matches && globalData.links.length > 0) {
       setFalse()
     }
-  }, [matches, setFalse])
+  }, [matches, globalData.links, setFalse])
 
   return (
     <>
@@ -25,7 +26,7 @@ const Nav = (): ReactElement => {
         text="Lorem ipsum dolor."
         moreDetails={toggle}
         elements={globalData.links}
-        matches={matches}
+        breakpoint={breakpoint}
       />
       <CustomDrawer
         isVisible={isVisible && !matches}

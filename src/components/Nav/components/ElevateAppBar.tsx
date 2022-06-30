@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
   Box,
+  Breakpoint,
   Container,
   IconButton,
   Toolbar,
@@ -14,7 +15,11 @@ import {
 import { ElementNav } from '@/context/useGlobalContext/useGlobalContext'
 import { SxStyles } from '@/ui/theme'
 
-export const classes: SxStyles = {
+interface ClassProp {
+  breakpoint: Breakpoint
+}
+
+export const classes = ({ breakpoint }: ClassProp): SxStyles => ({
   title: {
     cursor: 'pointer',
     fontWeight: 700,
@@ -30,13 +35,28 @@ export const classes: SxStyles = {
     verticalAlign: 'unset',
     cursor: 'pointer',
   }),
-}
+  menuItems: {
+    display: {
+      xs: 'none',
+      [breakpoint]: 'flex',
+    },
+    gap: 6,
+    listStyleType: 'none',
+  },
+  menuButton: {
+    display: {
+      xs: 'block',
+      [breakpoint]: 'none',
+    },
+    color: 'white',
+  },
+})
 
 interface Props {
   text: string
   elements?: ElementNav[]
   color?: ComponentProps<typeof AppBar>['color']
-  matches?: boolean
+  breakpoint?: Breakpoint
   minHeight?: string
   position?: ComponentProps<typeof AppBar>['position']
   threshold?: number
@@ -45,7 +65,7 @@ interface Props {
 
 const ElevateAppBar = ({
   text,
-  matches = false,
+  breakpoint = 'md',
   elements = [],
   color = 'primary',
   minHeight = '90px',
@@ -53,7 +73,7 @@ const ElevateAppBar = ({
   threshold = 20,
   moreDetails,
 }: Props) => {
-  const { title, links } = classes
+  const { title, links, menuItems, menuButton } = classes({ breakpoint })
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold,
@@ -79,30 +99,31 @@ const ElevateAppBar = ({
             {text.toUpperCase()}
           </Typography>
 
-          {elements.length > 0 && matches ? (
-            <Box display="flex" gap={6} component="ul" sx={{ listStyleType: 'none' }}>
-              {elements.map(({ text, link }) => (
-                <Box key={text} component="li">
-                  <Typography
-                    component="a"
-                    letterSpacing={'-1px'}
-                    fontWeight="bold"
-                    sx={links}
-                    onClick={() => {
-                      if (link && link.current) {
-                        globalThis.scrollTo({ top: link.current.offsetTop, behavior: 'smooth' })
-                      }
-                    }}
-                  >
-                    {text}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          ) : (
-            <IconButton aria-label="more" sx={{ color: 'white' }} onClick={moreDetails}>
-              <MenuIcon />
-            </IconButton>
+          {elements.length > 0 && (
+            <>
+              <Box component="ul" sx={menuItems}>
+                {elements.map((e) => (
+                  <Box key={e.text} component="li">
+                    <Typography
+                      component="a"
+                      letterSpacing={'-1px'}
+                      fontWeight="bold"
+                      sx={links}
+                      onClick={() => {
+                        if (e.link && e.link.current) {
+                          globalThis.scrollTo({ top: e.link.current.offsetTop, behavior: 'smooth' })
+                        }
+                      }}
+                    >
+                      {e.text}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+              <IconButton aria-label="more" sx={menuButton} onClick={moreDetails}>
+                <MenuIcon />
+              </IconButton>
+            </>
           )}
         </Toolbar>
       </Container>
