@@ -9,7 +9,7 @@ import { CustomDrawer, ElevateAppBar } from './components'
 
 const Nav = (): ReactElement => {
   const theme = useTheme()
-  const breakpoint: Breakpoint = 'lg'
+  const breakpoint: Breakpoint = 'md'
   const matches = useMediaQuery(theme.breakpoints.up(breakpoint))
   const { value: isVisible, setFalse, toggle } = useBoolean(false)
   const { globalData } = useGlobalContext()
