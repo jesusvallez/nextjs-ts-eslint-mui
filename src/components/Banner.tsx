@@ -7,7 +7,7 @@ import useGlobalContext from '@/context/useGlobalContext'
 import { ReactComponent as ShapeSVG } from '../assets/shape.svg'
 
 const Banner = (): ReactElement => {
-  const { data, setData } = useGlobalContext()
+  const { dataStoraged, setDataToStorage } = useGlobalContext()
 
   return (
     <>
@@ -28,7 +28,7 @@ const Banner = (): ReactElement => {
             unselectable="on"
             color="primary.contrastText"
             onClick={() => {
-              setData({ footer: 'Title Clicked', enable: false })
+              setDataToStorage({ footer: 'Title Clicked', enable: false })
             }}
             gutterBottom
           >
@@ -42,7 +42,7 @@ const Banner = (): ReactElement => {
             lineHeight={1.2}
             color="primary.contrastText"
             onClick={() => {
-              setData({ footer: 'Subtitle Clicked', enable: true })
+              setDataToStorage({ footer: 'Subtitle Clicked', enable: true })
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fugiat vel fuga, harum
@@ -50,7 +50,7 @@ const Banner = (): ReactElement => {
             exercitationem quos qui dignissimos. Nisi odit sequi corrupti perferendis eum?
           </Typography>
         </Container>
-        {data?.enable && (
+        {dataStoraged?.enable && (
           <SvgIcon
             component={ShapeSVG}
             sx={{

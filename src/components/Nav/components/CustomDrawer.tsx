@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import { ElementNav } from '../models'
+import { ElementNav } from '@/context/useGlobalContext/useGlobalContext'
 
 interface Props {
   archor?: 'left' | 'right'
@@ -24,7 +24,15 @@ function CustomDrawer({ isVisible, close, archor = 'right', elements = [] }: Pro
       <Box sx={{ width: 250 }} role="presentation" onClick={close} onKeyDown={close}>
         <List>
           {Object.values(elements).map(({ text, icon: Icon, link }) => (
-            <ListItem key={text} disablePadding>
+            <ListItem
+              key={text}
+              disablePadding
+              onClick={() => {
+                if (link && link.current) {
+                  globalThis.scrollTo({ top: link.current.offsetTop, behavior: 'smooth' })
+                }
+              }}
+            >
               <ListItemButton>
                 {Icon && (
                   <ListItemIcon>
@@ -32,18 +40,7 @@ function CustomDrawer({ isVisible, close, archor = 'right', elements = [] }: Pro
                   </ListItemIcon>
                 )}
                 <ListItemText>
-                  <Typography
-                    key={text}
-                    component="a"
-                    letterSpacing={'-1px'}
-                    fontWeight="bold"
-                    onClick={() => {
-                      if (link) {
-                        const element = globalThis.document.getElementById(link)
-                        element && element.scrollIntoView({ behavior: 'smooth' })
-                      }
-                    }}
-                  >
+                  <Typography key={text} component="a" letterSpacing={'-1px'} fontWeight="bold">
                     {text}
                   </Typography>
                 </ListItemText>

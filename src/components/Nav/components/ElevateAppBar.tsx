@@ -11,11 +11,19 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 
+import { ElementNav } from '@/context/useGlobalContext/useGlobalContext'
 import { SxStyles } from '@/ui/theme'
 
-import { ElementNav } from '../models'
-
 export const classes: SxStyles = {
+  title: {
+    cursor: 'pointer',
+    fontWeight: 700,
+    fontFamily: "'Roboto Condensed', sans-serif",
+    letterSpacing: -2,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
   links: ({ snippets }) => ({
     ...snippets?.links,
     whiteSpace: 'wrap',
@@ -26,7 +34,7 @@ export const classes: SxStyles = {
 
 interface Props {
   text: string
-  elements: ElementNav[]
+  elements?: ElementNav[]
   color?: ComponentProps<typeof AppBar>['color']
   matches?: boolean
   minHeight?: string
@@ -45,7 +53,7 @@ const ElevateAppBar = ({
   threshold = 20,
   moreDetails,
 }: Props) => {
-  const { links } = classes
+  const { title, links } = classes
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold,
@@ -62,11 +70,11 @@ const ElevateAppBar = ({
       <Container>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography
-            noWrap
             variant="h4"
-            fontWeight={700}
-            fontFamily="'Roboto Condensed', sans-serif"
-            letterSpacing={-2}
+            sx={title}
+            onClick={() => {
+              globalThis.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
             {text.toUpperCase()}
           </Typography>
@@ -81,9 +89,8 @@ const ElevateAppBar = ({
                     fontWeight="bold"
                     sx={links}
                     onClick={() => {
-                      if (link) {
-                        const element = globalThis.document.getElementById(link)
-                        element && element.scrollIntoView({ behavior: 'smooth' })
+                      if (link && link.current) {
+                        globalThis.scrollTo({ top: link.current.offsetTop, behavior: 'smooth' })
                       }
                     }}
                   >

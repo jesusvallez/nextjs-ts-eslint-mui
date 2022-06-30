@@ -1,21 +1,32 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, RefObject } from 'react'
 
-export type Data = {
+import { SVGReactComponent } from '@/ui/theme'
+
+export type DataToStorage = {
   footer?: string
   enable?: boolean
 }
 
+export type ElementNav = {
+  text: string
+  link: RefObject<HTMLHeadingElement>
+  icon?: SVGReactComponent
+}
+
+export type GlobalData = {
+  links?: ElementNav[]
+}
+
 export type GlobalContent = {
-  data: Data
-  setData: (c: Data) => void
+  dataStoraged: DataToStorage
+  globalData: GlobalData
+  setDataToStorage: (d: DataToStorage) => void
 }
 
 export const MyGlobalContext = createContext<GlobalContent>({
-  data: {
-    footer: 'admin',
-    enable: false,
-  },
-  setData: () => {},
+  dataStoraged: {},
+  globalData: {},
+  setDataToStorage: () => {},
 })
 
 export const useGlobalContext = () => useContext(MyGlobalContext)

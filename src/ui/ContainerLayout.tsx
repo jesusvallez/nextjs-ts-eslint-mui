@@ -21,19 +21,19 @@ const ContainerLayout = ({
   ...rest
 }: WithSXs<WithChildren<Props>>) => {
   return (
-    // rest hack to fade in https://codesandbox.io/s/material-ui-fade-56gpi?file=/src/index.js
+    // rest hack to fade in https://codesandbox.io/s/material-ui-fade-54gpi?file=/src/index.js
     <Box
       id={id}
       component={component}
       ref={elementRef}
       sx={{
         pt: {
-          xs: 2,
-          sm: 2,
+          xs: 4,
+          sm: 4,
         },
         pb: {
-          xs: 2,
-          sm: 2,
+          xs: 4,
+          sm: 4,
         },
         px: 0,
         ...sxs?.root,

@@ -5,7 +5,7 @@ import { Link as MuiLink, Typography } from '@mui/material'
 import useGlobalContext from '@/context/useGlobalContext'
 
 const Copyright = (): ReactElement => {
-  const { data } = useGlobalContext()
+  const { dataStoraged } = useGlobalContext()
 
   return (
     <Typography variant="body2" color="text.secondary" align="center" sx={{ my: 4 }}>
@@ -13,7 +13,7 @@ const Copyright = (): ReactElement => {
       <MuiLink color="inherit" href="https://jesusvallez.github.io/">
         My awesome Website
       </MuiLink>{' '}
-      {new Date().getFullYear()}. {data.footer}
+      {new Date().getFullYear()}. {dataStoraged.footer}
     </Typography>
   )
 }
