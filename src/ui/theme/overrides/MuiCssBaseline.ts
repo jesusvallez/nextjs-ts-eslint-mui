@@ -1,4 +1,4 @@
-import { Components } from '@mui/material/styles/components'
+import { Components } from '@mui/material'
 
 const MuiCssBaseline: Components['MuiCssBaseline'] = {
   styleOverrides: `

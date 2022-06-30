@@ -1,5 +1,4 @@
-import { PaletteMode } from '@mui/material'
-import { Components } from '@mui/material/styles/components'
+import { PaletteMode, Components } from '@mui/material'
 
 const MuiAppBar = (mode: PaletteMode): Components['MuiAppBar'] => ({
   styleOverrides: {
