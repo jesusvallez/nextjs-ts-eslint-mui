@@ -1,12 +1,13 @@
 import { createRef } from 'react'
 
+import useLocalStorageState from 'use-local-storage-state'
+
 import { WithChildren } from '@/helpers/react'
-import useLocalStorage from '@/hooks/useLocalStorage'
 
 import { DataToStorage, GlobalData, MyGlobalContext } from './useGlobalContext'
 
-export const defaultGlobalConfig: DataToStorage = {
-  footer: 'admin',
+export const defaultValue: DataToStorage = {
+  footer: '',
   enable: true,
 }
 
@@ -19,7 +20,7 @@ export const globalNavLinks: GlobalData['links'] = [
 ]
 
 const GlobalContextContainer = ({ children }: WithChildren) => {
-  const [info, setInfo] = useLocalStorage<DataToStorage>('global', defaultGlobalConfig)
+  const [info, setInfo] = useLocalStorageState('global', { defaultValue })
 
   return (
     <MyGlobalContext.Provider

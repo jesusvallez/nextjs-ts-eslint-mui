@@ -22,7 +22,8 @@
     "next-seo": "^5.4.0",
     "nextjs-progressbar": "0.0.14",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "use-local-storage-state": "^18.1.0"
   },
   "devDependencies": {
     "@svgr/webpack": "6.2.1",
